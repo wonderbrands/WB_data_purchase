@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_purchase_port" model="ir.actions.act_window">
+            <field name="name">Puertos de Carga/Descarga</field>
+            <field name="res_model">purchase.port</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_status_po" model="ir.actions.act_window">
+            <field name="name">Fases de la PO</field>
+            <field name="res_model">purchase.status.po</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_agente" model="ir.actions.act_window">
+            <field name="name">Agentes Aduanales</field>
+            <field name="res_model">purchase.agente.aduanal</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_forwarder" model="ir.actions.act_window">
+            <field name="name">Forwarders</field>
+            <field name="res_model">purchase.forwarder</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_naviera" model="ir.actions.act_window">
+            <field name="name">Navieras</field>
+            <field name="res_model">purchase.naviera</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_terrestre" model="ir.actions.act_window">
+            <field name="name">Operadores Terrestres</field>
+            <field name="res_model">purchase.terrestre</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_pedimento" model="ir.actions.act_window">
+            <field name="name">Claves de Pedimento</field>
+            <field name="res_model">purchase.clave.pedimento</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_status_entrega" model="ir.actions.act_window">
+            <field name="name">Status de Entrega</field>
+            <field name="res_model">purchase.status.entrega</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_purchase_nrs" model="ir.actions.act_window">
+            <field name="name">N/R/S (Etiquetas)</field>
+            <field name="res_model">purchase.nrs</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="view_purchase_nrs_list" model="ir.ui.view">
+            <field name="name">purchase.nrs.list</field>
+            <field name="model">purchase.nrs</field>
+            <field name="arch" type="xml">
+                <list string="N/R/S" editable="bottom">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </list>
+            </field>
+        </record>
+
+        <menuitem id="menu_purchase_logistics_root" 
+                  name="Logística" 
+                  parent="purchase.menu_purchase_root" 
+                  sequence="15" 
+                  groups="WB_data_purchase.group_logistics_manager"/>
+
+        <menuitem id="menu_logistics_ports" name="Puertos" parent="menu_purchase_logistics_root" action="action_purchase_port" sequence="10"/>
+        <menuitem id="menu_logistics_status_po" name="Fases PO" parent="menu_purchase_logistics_root" action="action_purchase_status_po" sequence="20"/>
+        <menuitem id="menu_logistics_agentes" name="Agentes Aduanales" parent="menu_purchase_logistics_root" action="action_purchase_agente" sequence="30"/>
+        <menuitem id="menu_logistics_forwarders" name="Forwarders" parent="menu_purchase_logistics_root" action="action_purchase_forwarder" sequence="40"/>
+        <menuitem id="menu_logistics_navieras" name="Navieras" parent="menu_purchase_logistics_root" action="action_purchase_naviera" sequence="50"/>
+        <menuitem id="menu_logistics_terrestres" name="Op. Terrestres" parent="menu_purchase_logistics_root" action="action_purchase_terrestre" sequence="60"/>
+        <menuitem id="menu_logistics_pedimentos" name="Pedimentos" parent="menu_purchase_logistics_root" action="action_purchase_pedimento" sequence="70"/>
+        <menuitem id="menu_logistics_status_ent" name="Status Entrega" parent="menu_purchase_logistics_root" action="action_purchase_status_entrega" sequence="80"/>
+        <menuitem id="menu_logistics_nrs" name="N/R/S (Etiquetas)" parent="menu_purchase_logistics_root" action="action_purchase_nrs" sequence="90"/>
+
+    </data>
+</odoo>

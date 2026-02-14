@@ -38,9 +38,11 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/security_groups.xml',
+        'security/ir.model.access.csv',
         # 'views/purchase_order_line_views.xml', # No se usaba en v15 al moemento de migracion
         'views/purchase_order_views.xml',
+        'views/logistics_menus.xml',
     ],
 
 }

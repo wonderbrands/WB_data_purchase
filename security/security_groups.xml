@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_logistics_viewer" model="res.groups">
+            <field name="name">Logística e Importación: Usuario Operativo</field>
+            <field name="category_id" ref="base.module_category_inventory_purchase"/>
+            <field name="comment">Puede ver la pestaña de Logística en las PO y seleccionar opciones, pero no crear nuevos catálogos.</field>
+        </record>
+
+        <record id="group_logistics_manager" model="res.groups">
+            <field name="name">Logística e Importación: Administrador</field>
+            <field name="category_id" ref="base.module_category_inventory_purchase"/>
+            <field name="implied_ids" eval="[(4, ref('WB_data_purchase.group_logistics_viewer'))]"/>
+            <field name="comment">Acceso total. Puede crear/editar catálogos (puertos, navieras) y ver menús de configuración.</field>
+        </record>
+    </data>
+</odoo>

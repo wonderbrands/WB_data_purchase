@@ -1,13 +1,70 @@
 <odoo>
     <data>
-        <record id="purchase_order_form_inherit_clean" model="ir.ui.view">
-            <field name="name">purchase_order_inherit_clean</field>
+        <record id="purchase_order_form_inherit_logistics" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit.logistics</field>
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
+                
                 <xpath expr="//field[@name='partner_id']" position="attributes">
-                    <attribute name ="domain">[('data_wb_supplier', '=', True)]</attribute>
+                    <attribute name="domain">[('data_wb_supplier', '=', True)]</attribute>
                 </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Logística e Importación" name="page_logistics_import" groups="WB_data_purchase.group_logistics_viewer">
+                        <group>
+                            <group string="Fechas Clave">
+                                <field name="data_exfty"/>
+                                <field name="data_etd"/>
+                                <field name="data_eta"/>
+                                <field name="data_atd"/>
+                                <field name="data_ata"/>
+                                <field name="data_notificacion_arribo"/>
+                                <field name="data_fecha_despacho"/>
+                                <field name="data_fecha_cedis"/>
+                                <field name="data_fecha_carga_tracking"/>
+                                <field name="data_fecha_anticipo"/>
+                            </group>
+                            
+                            <group string="Transporte y Carga">
+                                <field name="data_pol_id"/>
+                                <field name="data_pod_id"/>
+                                <field name="data_agente_aduanal_id"/>
+                                <field name="data_forwarder_id"/>
+                                <field name="data_naviera_id"/>
+                                <field name="data_terrestre_id"/>
+                                <field name="data_tdt"/>
+                                <field name="data_contenedor"/>
+                                <field name="data_loading_hq"/>
+                                <field name="data_loading_percentage" widget="percentage"/>
+                                <field name="data_telex"/>
+                            </group>
+
+                            <group string="Finanzas y Aduanas">
+                                <field name="data_factura_comercial"/>
+                                <field name="data_fecha_factura"/>
+                                <field name="data_clave_pedimento_id"/>
+                                <field name="data_arancel" widget="percentage"/>
+                                <field name="data_tc"/>
+                                <field name="data_bonificacion"/>
+                            </group>
+
+                            <group string="Control de Seguimiento">
+                                <field name="data_status_po_id"/>
+                                <field name="data_status_entrega_id"/>
+                                <field name="data_nrs_id" options="{'color_field': 'color'}"/>
+                                <field name="data_comprador_id"/>
+                                <field name="data_status_last_update"/>
+                                <field name="data_status_last_user_update"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Comentarios Adicionales">
+                            <field name="data_comentarios" nolabel="1" placeholder="Agrega cualquier observación logística aquí..."/>
+                        </group>
+                    </page>
+                </xpath>
+
             </field>
         </record>
     </data>
