@@ -57,6 +57,7 @@ class PurchaseOrder(models.Model):
     data_status_entrega_id = fields.Many2one('purchase.status.entrega', string='STATUS ENTREGA')
     data_comprador_id = fields.Many2one('res.users', string='COMPRADOR') # Recomiendo enlazarlo a los usuarios de Odoo
     data_nrs_id = fields.Many2one('purchase.nrs', string='N/R/S', help='Nuevo/Resurtido/Sustituto (Cambio de aspecto)')
+    data_nrs_color = fields.Integer(string='Color N/R/S')
     
     
 

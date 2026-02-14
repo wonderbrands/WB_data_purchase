@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="purchase_order_form_inherit_logistics" model="ir.ui.view">
@@ -45,14 +46,20 @@
                                 <field name="data_fecha_factura"/>
                                 <field name="data_clave_pedimento_id"/>
                                 <field name="data_arancel" widget="percentage"/>
-                                <field name="data_tc"/>
+                                <field name="data_tc" widget="monetary" options="{'digits': [16, 4]}"/>
                                 <field name="data_bonificacion"/>
                             </group>
 
                             <group string="Control de Seguimiento">
                                 <field name="data_status_po_id"/>
                                 <field name="data_status_entrega_id"/>
-                                <field name="data_nrs_id" options="{'color_field': 'color'}"/>
+                                
+                                <label for="data_nrs_id"/>
+                                <div class="o_row">
+                                    <field name="data_nrs_id" placeholder="Seleccione..."/>
+                                    <field name="data_nrs_color" widget="color_picker"/>
+                                </div>
+                                
                                 <field name="data_comprador_id"/>
                                 <field name="data_status_last_update"/>
                                 <field name="data_status_last_user_update"/>
