@@ -119,4 +119,4 @@ class PurchaseNRS(models.Model):
     _description = 'N/R/S (Nuevo/Resurtido/Sustituto)'
     
     name = fields.Char(string='Nombre', required=True)
-    color = fields.Integer(string='ColorIndex') # Campo necesario para que funcione el widget de colores en Odoo
+    
