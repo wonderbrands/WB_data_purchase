@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
@@ -29,21 +29,28 @@ class PurchaseOrder(models.Model):
     data_tdt = fields.Integer(string='TdT [días]', help='Tiempo de Tránsito')
 
     # --- CARGA Y CONTENEDOR ---
-    data_loading_hq = fields.Integer(string='Loading HQ', help='Cupo en unidades en un contenedor')
-    data_loading_percentage = fields.Float(string='Loading %', help='% que ocupa de un Contenedor 40HQ')
+    
+    # Quitamos estos apetición de "compras" porque son automáticos.
+    #data_loading_hq = fields.Integer(string='Loading HQ', help='Cupo en unidades en un contenedor')
+    #data_loading_percentage = fields.Float(string='Loading %', help='% que ocupa de un Contenedor 40HQ')
+    # ------------------------------------------------------------------------------------------------------
     data_contenedor = fields.Char(string='CONTENEDOR', help='Clave identificadora de contenedor, cada contenedor es separado por una coma')
     data_telex = fields.Boolean(string='TELEX?', help='Si o No el telex esta ejecutado')
 
     # --- FINANZAS Y ADUANA ---
-    data_bonificacion = fields.Float(string='Bonificación (+ o -)', help='En caso de diferencias entre ordenado y recibido - Esta es la bonificacion a reclamar al proveedor y aplicar al pago')
+    data_bonificacion = fields.Float(
+        string='Bonificación (+ o -)', 
+        help='En caso de diferencias entre ordenado y recibido...'
+    )
+    
     data_factura_comercial = fields.Char(string='FACTURA COMERCIAL')
     data_tc = fields.Float(string='TC', digits=(12, 4), help='Tipo de cambio') # digits=(12,4) es estándar para TC
     data_arancel = fields.Float(string='Arancel', help='IGI en Pedimento')
 
     # --- CONTROL Y COMENTARIOS ---
     data_comentarios = fields.Text(string='COMENTARIOS')
-    data_status_last_update = fields.Char(string='Status Last Update')
-    data_status_last_user_update = fields.Char(string='Status Last User Update')
+    #data_status_last_update = fields.Char(string='Status Last Update')
+    #data_status_last_user_update = fields.Char(string='Status Last User Update')
 
     # --- CAMPOS RELACIONALES (MANY2ONE) ---
     data_pol_id = fields.Many2one('purchase.port', string='POL', help='Puerto de carga en origen')
@@ -59,6 +66,21 @@ class PurchaseOrder(models.Model):
     data_nrs_id = fields.Many2one('purchase.nrs', string='N/R/S', help='Nuevo/Resurtido/Sustituto (Cambio de aspecto)')
     data_nrs_color = fields.Integer(string='Color N/R/S')
     
+    def action_bonification_calculate(self):
+        self.ensure_one()
+        
+        total_bonification = 0.0
+        # Iteramos sobre las líneas de ESTA orden de compra específica
+        for line in self.order_line:
+            #FÓRMULA MATEMÁTICA
+            # Ejemplo temporal:
+            # diferencia = line.product_qty - line.qty_received
+            # total_bonificacion += diferencia
+            pass 
+            
+        # Al final del ciclo, asignamos el total al campo de la orden
+        self.data_bonificacion = total_bonification
+        
     
 
 # ---------------------------------------------------------------------------------

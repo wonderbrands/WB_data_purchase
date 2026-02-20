@@ -36,8 +36,8 @@
                                 <field name="data_terrestre_id"/>
                                 <field name="data_tdt"/>
                                 <field name="data_contenedor"/>
-                                <field name="data_loading_hq"/>
-                                <field name="data_loading_percentage" widget="percentage"/>
+                                <!-- <field name="data_loading_hq"/>
+                                <field name="data_loading_percentage" widget="percentage"/> -->
                                 <field name="data_telex"/>
                             </group>
 
@@ -47,7 +47,17 @@
                                 <field name="data_clave_pedimento_id"/>
                                 <field name="data_arancel" widget="percentage"/>
                                 <field name="data_tc" widget="monetary" options="{'digits': [16, 4]}"/>
-                                <field name="data_bonificacion"/>
+    
+                                    <label for="data_bonificacion" string="Bonificación (+ o -)"/>
+                                    <div class="o_row" name="bonificacion_calculo">
+                                        <field name="data_bonificacion"/>
+                                        <button name="action_bonification_calculate" 
+                                                type="object" 
+                                                string="Calcular" 
+                                                class="oe_highlight" 
+                                                icon="fa-calculator"
+                                                help="Haz clic para calcular la bonificación basada en las recepciones"/>
+                                    </div>
                             </group>
 
                             <group string="Control de Seguimiento">
@@ -61,8 +71,8 @@
                                 </div>
                                 
                                 <field name="data_comprador_id"/>
-                                <field name="data_status_last_update"/>
-                                <field name="data_status_last_user_update"/>
+                                <!-- <field name="data_status_last_update"/>
+                                <field name="data_status_last_user_update"/> -->
                             </group>
                         </group>
                         
