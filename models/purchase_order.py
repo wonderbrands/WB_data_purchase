@@ -66,6 +66,26 @@ class PurchaseOrder(models.Model):
     data_nrs_id = fields.Many2one('purchase.nrs', string='N/R/S', help='Nuevo/Resurtido/Sustituto (Cambio de aspecto)')
     data_nrs_color = fields.Integer(string='Color N/R/S')
     
+    # -----------------------------------------------------------------
+    data_attachments_purchase = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='purchase_data_attachment_rel', #Tabla relacional exclusiva para este campo
+        column1='purchase_id',
+        column2='attachment_id',
+        string='Documentos de importación'
+    )
+
+    data_logistics_manager = fields.Boolean(
+        compute='_compute_is_logistics_manager',
+        store=False
+    )
+    
+    @api.depends_context('uid')
+    def _compute_is_logistics_manager(self):
+        for record in self:
+            record.data_logistics_manager = self.env.user.has_group('WB_data_purchase.group_logistics_manager')
+    # -----------------------------------------------------------------
+    
     def action_bonification_calculate(self):
         self.ensure_one()
         
